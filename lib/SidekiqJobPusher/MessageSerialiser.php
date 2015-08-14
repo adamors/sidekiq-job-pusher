@@ -8,10 +8,10 @@ class MessageSerialiser
     {
         $at = $at ?: time();
         return json_encode(array(
-            'class' => $workerClass,
-            'args'  => $args,
-            'retry' => $retry,
-            'at'    => $at
+            'class'          => $workerClass,
+            'args'           => $args,
+            'retry'          => $retry,
+            'enqueued_at'    => $at
         ));
     }
 }
