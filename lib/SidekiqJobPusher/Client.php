@@ -17,11 +17,11 @@ class Client
         $this->messageSerialiser = new MessageSerialiser;
     }
 
-    function perform($workerClass, $arguments = array(), $retry = false, $queue = 'default')
+    function perform($workerClass, $arguments = array(), $retry = false, $queue = 'default', $at = null)
     {
         $key = $this->keyGenerator->generate($queue, $this->namespace);
-        $message = $this->messageSerialiser->serialise($workerClass, $arguments, $retry);
-        
+        $message = $this->messageSerialiser->serialise($workerClass, $arguments, $retry, $at);
+
         $this->redis->lpush($key, $message);
     }
 }
